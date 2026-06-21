@@ -1,0 +1,15 @@
+# Example: a Modelfile with several common mistakes, for demoing the linter.
+# Run: modelfile-lint examples/Modelfile.broken
+#
+# Expected: several ERRORs and WARNINGs, none of which `ollama create`
+# would explain clearly on its own.
+
+FROM ./missing-model.gguf
+
+PARAMETER temprature 0.7
+PARAMETER temperature 9.5
+PARAMETER top_k notanumber
+
+SYSTEM ""
+
+MESSAGE wizard This role does not exist

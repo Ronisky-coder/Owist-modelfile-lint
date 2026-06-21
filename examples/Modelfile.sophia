@@ -1,0 +1,25 @@
+# Example: a clean, passing Modelfile in the style of LimitAI/Sophia
+# Run: modelfile-lint examples/Modelfile.sophia
+#
+# Note: this references sophia-q4_k_m.gguf, which is NOT included in this
+# repo (real GGUF files are gigabytes). Point FROM at any real .gguf file
+# you have locally to see this Modelfile fully pass. As shipped, you'll
+# correctly see one FROM005 error for the missing file — that's the linter
+# working, not a bug in the example.
+
+FROM sophia-q4_k_m.gguf
+
+TEMPLATE """{{ if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{ end }}{{ if .Prompt }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+{{ end }}<|im_start|>assistant
+"""
+
+PARAMETER temperature 0.7
+PARAMETER top_p 0.9
+PARAMETER num_ctx 4096
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|im_start|>"
+
+SYSTEM """You are Sophia, an inquisitive and helpful AI assistant built by Openwist AI. You ask clarifying questions when needed and avoid generic, repetitive openers."""

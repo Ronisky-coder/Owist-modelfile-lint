@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "owist-modelfile-lint"
+version = "0.1.0"
+description = "Static validation for Ollama Modelfiles — catch broken FROM paths, bad PARAMETER values, and missing TEMPLATEs before running `ollama create`."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [
+    { name = "Openwist AI", email = "openwist@zohomail.com" }
+]
+keywords = ["ollama", "modelfile", "gguf", "lint", "llm", "validator"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Utilities",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/Ronisky-coder/Owist-modelfile-lint"
+Repository = "https://github.com/Ronisky-coder/Owist-modelfile-lint"
+Issues = "https://github.com/Ronisky-coder/Owist-modelfile-lint/issues"
+"Openwist AI" = "https://openwist.kesug.com"
+
+[project.scripts]
+modelfile-lint = "owist_modelfile_lint.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "build", "twine"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/owist_modelfile_lint"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
